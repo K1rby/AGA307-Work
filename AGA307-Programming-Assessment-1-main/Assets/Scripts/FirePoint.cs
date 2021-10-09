@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FirePoint : MonoBehaviour
 {
-    public GameObject projectilePrefab;
-    public float projectileSpeed = 1000f;
+    public Bullet projectilePrefab;   //Gets the Bullet script from the Projectile prefab
     public Transform firingPoint;
+    public LayerMask targetLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -19,27 +19,24 @@ public class FirePoint : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire1"))
         {
-            GameObject newProjectile;
+            Bullet newProjectile;
             newProjectile = Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
-            newProjectile.GetComponent<Rigidbody>().AddForce(firingPoint.forward * projectileSpeed);
-            Destroy(newProjectile, 2f);
-        }
-    }
+            Destroy(newProjectile.gameObject, 2f);
 
-    private void FixedUpdate()
-    {
-        RaycastHit hit;
+            RaycastHit hitInfo;
+            Debug.DrawRay(firingPoint.position, firingPoint.forward * 1000f, Color.blue, 1f);
 
-        Vector3 fwd = transform.TransformDirection(Vector3.forward);
-
-        if(Physics.Raycast(transform.position, fwd, out hit, 10))
-        {
-            print(hit.collider.name);
-
-            if (hit.collider.CompareTag("Target"))
+            if(Physics.Raycast(firingPoint.position, firingPoint.forward, out hitInfo, 1000f, targetLayer))
             {
-                hit.collider.GetComponent<Renderer>().material.color = Color.blue;
+                Target target = hitInfo.collider.GetComponent<Target>();
+                if(target != null)
+                {
+                    target.OnHit();
+                }
+
+                Debug.Log("Hit " + hitInfo.collider.gameObject.name);
             }
         }
     }
+
 }

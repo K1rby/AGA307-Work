@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public float speed = 10f;
+    public Rigidbody myRigidbody;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        myRigidbody.AddForce(transform.forward * speed);
     }
 
     // Update is called once per frame
@@ -18,11 +21,14 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Target"))
+        if (collision.gameObject.CompareTag("Target"))
         {
-            collision.collider.GetComponent<Renderer>().material.color = Color.red;
-            Destroy(collision.collider.gameObject, 0.2f);
-            Destroy(this.gameObject);
+            Target target = collision.gameObject.GetComponent<Target>();
+            if(target != null)
+            {
+                target.OnHit();
+                Destroy(this.gameObject);
+            }
         }
     }
 }

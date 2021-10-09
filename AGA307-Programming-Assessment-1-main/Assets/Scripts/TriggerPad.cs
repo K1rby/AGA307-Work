@@ -6,6 +6,13 @@ public class TriggerPad : MonoBehaviour
 {
     public GameObject sphere;
     public MeshRenderer meshRenderer;
+    public float growSpeed = 0.1f;
+    public float originalScale;
+
+    void Start()
+    {
+        originalScale = sphere.transform.localScale.x;
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -19,7 +26,7 @@ public class TriggerPad : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            sphere.transform.localScale = Vector3.one * 0.01f * Time.deltaTime;
+            sphere.transform.localScale += Vector3.one * growSpeed * Time.deltaTime;
         }
     }
 
@@ -27,7 +34,7 @@ public class TriggerPad : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            sphere.transform.localScale = Vector3.one;
+            sphere.transform.localScale = Vector3.one * originalScale;
             meshRenderer.material.color = Color.cyan;
         }
     }
