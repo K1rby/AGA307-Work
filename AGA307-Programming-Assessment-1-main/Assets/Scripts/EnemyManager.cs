@@ -30,7 +30,8 @@ public class EnemyManager : MonoBehaviour
     {
         for (int i = 0; i < enemyTypes.Length; i++)
         {
-            GameObject newSpawn = Instantiate(enemyTypes[i], spawnPoints[i].position, spawnPoints[i].rotation);
+            int spawnIndex = Random.Range(0, spawnPoints.Length);
+            GameObject newSpawn = Instantiate(enemyTypes[spawnIndex], spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation);
             enemies.Add(newSpawn);
             Debug.Log(enemies.Count);
         }
