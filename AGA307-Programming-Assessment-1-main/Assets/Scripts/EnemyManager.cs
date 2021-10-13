@@ -13,36 +13,36 @@ public class EnemyManager : MonoBehaviour
     {
         for (int i = 0; i < 100; i++)
         {
-            Debug.Log((i = 1).ToString());
+            //Debug.Log((i = 1).ToString());
         }
 
        /* if (Input.GetKeyDown("I"))
         {
             SpawnEnemy();
-        }
-        SpawnEnemy();*/
+        }*/
+        SpawnEnemy();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        /*if (Input.GetKeyDown(KeyCode.I))
         {
             SpawnEnemy();
-        }
+        }*/
     }
 
     [ContextMenu("Spawn Enemy")]
     public void SpawnEnemy()
     {
-        for (int i = 0; i < enemyTypes.Length; i++)
+        for (int index = 0; index < enemyTypes.Length; index++)
         {
             int spawnIndex = Random.Range(0, spawnPoints.Length);
-            GameObject newSpawn = Instantiate(enemyTypes[spawnIndex], spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation);
+            GameObject newSpawn = Instantiate(enemyTypes[index], spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation);
             enemies.Add(newSpawn);
             Debug.Log(enemies.Count);
         }
 
-        Debug.Log("Total:" + enemies.Count + "enemies");
+        Debug.Log("Total: " + enemies.Count + "enemies");
     }
 }
