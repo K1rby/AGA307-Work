@@ -16,20 +16,16 @@ public class EnemyManager : MonoBehaviour
             //Debug.Log((i = 1).ToString());
         }
 
-       /* if (Input.GetKeyDown("I"))
-        {
-            SpawnEnemy();
-        }*/
-        SpawnEnemy();
+        //SpawnEnemy();
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             SpawnEnemy();
-        }*/
+        }
     }
 
     [ContextMenu("Spawn Enemy")]
