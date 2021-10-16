@@ -11,12 +11,11 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 100; i++)
+        /*for (int i = 0; i < 100; i++)
         {
-            //Debug.Log((i = 1).ToString());
-        }
+            Debug.Log((i = 1).ToString());
+        }*/
 
-        //SpawnEnemy();
     }
 
     // Update is called once per frame
@@ -31,14 +30,20 @@ public class EnemyManager : MonoBehaviour
     [ContextMenu("Spawn Enemy")]
     public void SpawnEnemy()
     {
-        for (int index = 0; index < enemyTypes.Length; index++)
+        /*for (int index = 0; index < enemyTypes.Length; index++)
         {
             int spawnIndex = Random.Range(0, spawnPoints.Length);
             GameObject newSpawn = Instantiate(enemyTypes[index], spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation);
             enemies.Add(newSpawn);
             Debug.Log(enemies.Count);
-        }
+        }*/
 
-        Debug.Log("Total: " + enemies.Count + "enemies");
+        int spawnIndex = Random.Range(0, spawnPoints.Length);
+        int enemyIndex = Random.Range(0, enemyTypes.Length);
+        GameObject newSpawn = Instantiate(enemyTypes[enemyIndex], spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation);
+        enemies.Add(newSpawn);
+        Debug.Log(enemies.Count);
+
+        Debug.Log("Total: " + enemies.Count + " enemies");
     }
 }
