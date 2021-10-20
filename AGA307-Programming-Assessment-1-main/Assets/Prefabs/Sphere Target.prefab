@@ -109,3 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 6157982820028647980}
+  targetSize: 1
+  targetHealth: 0

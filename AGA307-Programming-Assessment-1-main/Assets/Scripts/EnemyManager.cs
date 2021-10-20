@@ -25,11 +25,7 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //PLACE THIS STATEMENT IN TARGET SCRIPT
-        /*if (Input.GetKeyDown(KeyCode.I))
-        {
-            SpawnTargets();
-        }*/
+
     }
 
     [ContextMenu("Spawn Enemy")]
@@ -42,12 +38,6 @@ public class EnemyManager : MonoBehaviour
             enemies.Add(newSpawn);
             Debug.Log(enemies.Count);
         }
-
-        /*int spawnIndex = Random.Range(0, spawnPoints.Length);
-        int enemyIndex = Random.Range(0, enemyTypes.Length);
-        GameObject newSpawn = Instantiate(enemyTypes[enemyIndex], spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation);
-        enemies.Add(newSpawn);
-        Debug.Log(enemies.Count);*/
 
         Debug.Log("Total: " + enemies.Count + " enemies");
     }
