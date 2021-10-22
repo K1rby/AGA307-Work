@@ -16,13 +16,16 @@ public class Target : MonoBehaviour
     public MeshRenderer meshRenderer;
 
     public TargetSize targetSize;
-    float scaleFactor = 1;
-    //transform.localScale = Vector3.one * scaleFactor;
+    float scaleFactor = 2;
+
+    float targetMoveDistance = 150f;
+    float targetMoveSpeed = 10f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(TargetMove());
+        SetUp();
     }
 
     // Update is called once per frame
@@ -37,23 +40,34 @@ public class Target : MonoBehaviour
         Destroy(gameObject, 0.2f);
     }
 
+    IEnumerator TargetMove()
+    {
+        for (int i = 0; i < targetMoveDistance; i++)
+        {
+            transform.Translate(Vector3.left * targetMoveSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        yield return new WaitForSecondsRealtime(0.3f);
+        transform.Rotate(Vector3.up * 180f);
+        yield return new WaitForSecondsRealtime(0.3f);
+        StartCoroutine(TargetMove());
+    }
+
     void SetUp()
     {
         switch (targetSize)
         {
             case TargetSize.Small:
-                //targetHealth = 1;
-                //scaleFactor = 1;
-                transform.localScale = Vector3.one * scaleFactor;
-                break;
-            case TargetSize.Medium:
-                //targetHealth = 2;
                 //scaleFactor = 2;
                 transform.localScale = Vector3.one * scaleFactor;
                 break;
+            case TargetSize.Medium:
+                //scaleFactor = 4;
+                transform.localScale = Vector3.one * scaleFactor;
+                break;
             case TargetSize.Large:
-                //targetHealth = 3;
-                //scaleFactor = 3;
+                //scaleFactor = 6;
                 transform.localScale = Vector3.one * scaleFactor;
                 break;
         }
