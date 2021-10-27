@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class Target_Manager : MonoBehaviour
+public class Target_Manager : Singleton<Target_Manager>
 {
     public Transform[] targetSpawnPoints;
     public GameObject[] targetTypes;
