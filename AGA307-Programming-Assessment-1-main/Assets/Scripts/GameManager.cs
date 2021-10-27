@@ -14,12 +14,28 @@ public enum GameState
 
 public enum Difficulty { Easy, Medium, Hard}
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     public GameState gameState;
     public Difficulty difficulty;
 
     float scoreMultiplier = 1f;
+    float score = 3;
+
+    private void OnEnable()
+    {
+        GameEvents.OnEnemyHit += OnEnemyHit;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnEnemyHit -= OnEnemyHit;
+    }
+
+    void OnEnemyHit(Enemies _enemy)
+    {
+        AddScore(score);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +45,7 @@ public class GameManager : MonoBehaviour
         difficulty = Difficulty.Easy;
 
         SetUp();
+        Debug.Log(score);
     }
 
     // Update is called once per frame
@@ -54,5 +71,10 @@ public class GameManager : MonoBehaviour
                 scoreMultiplier = 1f;
                 break;
         }
+    }
+
+    public void AddScore(float _points)
+    {
+        score += _points * scoreMultiplier;
     }
 }

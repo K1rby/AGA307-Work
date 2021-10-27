@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton <T>:MonoBehaviour where T:MonoBehaviour
+public class Singleton <T>:GameBehaviour where T:MonoBehaviour
 {
+    private bool dontDestroy;  //If checked, scenes won't be destroyed between transitions
     private static T instance_;
     public static T instance
     {
@@ -26,7 +27,7 @@ public class Singleton <T>:MonoBehaviour where T:MonoBehaviour
         if (instance_ == null )
         {
             instance_ =this as T;
-            //DontDestroyOnLoad (gameObject );
+            if (dontDestroy) DontDestroyOnLoad (gameObject );
         }
         else
         {

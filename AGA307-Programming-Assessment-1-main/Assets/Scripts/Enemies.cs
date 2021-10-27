@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,12 +12,15 @@ public enum EnemyType
     COUNT
 }
 
-public class Enemies : MonoBehaviour
+public class Enemies : GameBehaviour
 {
     float moveDistance = 500f;
 
     public EnemyType enemyType;
     public int enemyHealth;
+
+    public float enemyHitScore = 10f;
+    public float enemyDeathScore = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,10 +32,10 @@ public class Enemies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            StartCoroutine(Move());
-        }*/
+            Hit(10);
+        }
     }
 
     IEnumerator Move()
@@ -64,5 +68,44 @@ public class Enemies : MonoBehaviour
                 enemyHealth = 150;
                 break;
         }
+    }
+
+    void Hit(int _damage)
+    {
+        enemyHealth -= _damage;
+        GameEvents.ReportEnemyHit(this);
+        _GM.AddScore(enemyHitScore);
+
+        if(enemyHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        GameEvents.ReportEnemyDied(this);
+        _GM.AddScore(enemyDeathScore);
+        _EM.EnemyDied(this);
+        StopAllCoroutines();
+        Destroy(this.gameObject);
+    }
+}
+
+public static class GameEvents
+{
+    public static event Action<Enemies> OnEnemyHit = null;
+    public static event Action<Enemies> OnEnemyDied = null;
+
+    public static void ReportEnemyHit(Enemies _enemy)
+    {
+        Debug.Log("Enemy " + _enemy.name + " was hit");
+        OnEnemyHit?.Invoke(_enemy);
+    }
+
+    public static void ReportEnemyDied(Enemies _enemy)
+    {
+        Debug.Log("Enemy " + _enemy.name + " died");
+        OnEnemyDied?.Invoke(_enemy);
     }
 }

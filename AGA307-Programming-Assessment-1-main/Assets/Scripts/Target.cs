@@ -16,7 +16,7 @@ public class Target : MonoBehaviour
     public MeshRenderer meshRenderer;
 
     public TargetSize targetSize;
-    float scaleFactor = 2;
+    float scaleFactor = 1;
 
     float targetMoveDistance = 150f;
     float targetMoveSpeed = 10f;
@@ -59,16 +59,22 @@ public class Target : MonoBehaviour
         switch (targetSize)
         {
             case TargetSize.Small:
-                //scaleFactor = 2;
+                scaleFactor = 1;
                 transform.localScale = Vector3.one * scaleFactor;
+                targetMoveSpeed = 20f;
+                targetMoveDistance = 200f;
                 break;
             case TargetSize.Medium:
-                //scaleFactor = 4;
+                scaleFactor = 2;
                 transform.localScale = Vector3.one * scaleFactor;
+                targetMoveSpeed = 15f;
+                targetMoveDistance = 175f;
                 break;
             case TargetSize.Large:
-                //scaleFactor = 6;
+                scaleFactor = 3;
                 transform.localScale = Vector3.one * scaleFactor;
+                targetMoveSpeed = 10f;
+                targetMoveDistance = 150f;
                 break;
         }
     }

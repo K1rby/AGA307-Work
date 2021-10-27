@@ -2,13 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : Singleton<EnemyManager>
 {
     public Transform[] spawnPoints;
     public GameObject[] enemyTypes;
     public List<GameObject> enemies;
 
     float spawnDelay = 5f;
+
+    private void OnEnable()
+    {
+        GameEvents.OnEnemyDied += EnemyDied;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnEnemyDied -= EnemyDied;
+    }
+
+    public void EnemyDied(Enemies _enemy)
+    {
+        enemies.Remove(_enemy.gameObject);
+        Destroy(_enemy.gameObject);
+        Debug.Log(enemies.Count);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +36,7 @@ public class EnemyManager : MonoBehaviour
         }*/
         SpawnEnemy();
         StartCoroutine(DelayedSpawn(enemies.Count));
+        ShuffleList(enemies);
 
     }
 
@@ -50,4 +68,10 @@ public class EnemyManager : MonoBehaviour
             yield return new WaitForSeconds(spawnDelay);
         }
     }
+
+    /*public void EnemyDied(Enemies _enemy)
+    {
+        enemies.Remove(_enemy.gameObject);
+        Debug.Log(enemies.Count);
+    }*/
 }
