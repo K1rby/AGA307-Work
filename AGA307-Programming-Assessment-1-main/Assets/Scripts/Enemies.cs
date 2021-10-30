@@ -12,21 +12,27 @@ public enum EnemyType
     COUNT
 }
 
-public class Enemies : GameBehaviour
+public class Enemies : MonoBehaviour
 {
+    private GameManager _GM;
+
     float moveDistance = 500f;
 
     public EnemyType enemyType;
     public int enemyHealth;
 
-    public float enemyHitScore = 10f;
-    public float enemyDeathScore = 100f;
+    public float enemyHitScore = 10f; //Score received when enemy is hit
+    public float enemyDeathScore = 100f; //Score received when enemy dies
 
+    int playerDamage = 10;
+
+    float idleTimer = 0f;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(Move());
         SetUp();
+        _GM = GameManager.instance;
     }
 
     // Update is called once per frame
@@ -34,7 +40,12 @@ public class Enemies : GameBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            Hit(10);
+            Hit();
+        }
+
+        if(idleTimer <= 0f)
+        {
+            SeekTarget();
         }
     }
 
@@ -45,16 +56,16 @@ public class Enemies : GameBehaviour
             transform.Translate(Vector3.forward * Time.deltaTime);
             yield return null;
         }
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(1f);
 
         transform.Rotate(Vector3.up * 180f);
 
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(1f);
 
         StartCoroutine(Move());
     }
 
-    void SetUp()
+    public virtual void SetUp()
     {
         switch (enemyType)
         {
@@ -67,12 +78,15 @@ public class Enemies : GameBehaviour
             case EnemyType.TwoHand:
                 enemyHealth = 150;
                 break;
+            default:
+                Debug.Log("Invalid type selected");
+                break;
         }
     }
 
-    void Hit(int _damage)
+    public virtual void Hit()
     {
-        enemyHealth -= _damage;
+        enemyHealth -= playerDamage;
         GameEvents.ReportEnemyHit(this);
         _GM.AddScore(enemyHitScore);
 
@@ -82,13 +96,18 @@ public class Enemies : GameBehaviour
         }
     }
 
-    void Die()
+    protected virtual void SeekTarget()
+    {
+
+    }
+
+    public virtual void Die()
     {
         GameEvents.ReportEnemyDied(this);
         _GM.AddScore(enemyDeathScore);
-        _EM.EnemyDied(this);
+        EnemyManager.instance.EnemyDied(this);
         StopAllCoroutines();
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }
 

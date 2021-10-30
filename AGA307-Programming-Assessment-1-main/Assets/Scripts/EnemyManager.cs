@@ -20,11 +20,11 @@ public class EnemyManager : Singleton<EnemyManager>
         GameEvents.OnEnemyDied -= EnemyDied;
     }
 
-    public void EnemyDied(Enemies _enemy)
+    public void EnemyDied(Enemies toRemove)
     {
-        enemies.Remove(_enemy.gameObject);
-        Destroy(_enemy.gameObject);
-        Debug.Log(enemies.Count);
+        enemies.Remove(toRemove.gameObject);
+        //Destroy(toRemove.gameObject);
+        Debug.Log("Total: " + enemies.Count + " enemies");
     }
 
     // Start is called before the first frame update
@@ -36,14 +36,14 @@ public class EnemyManager : Singleton<EnemyManager>
         }*/
         SpawnEnemy();
         StartCoroutine(DelayedSpawn(enemies.Count));
-        ShuffleList(enemies);
+        //ShuffleList(enemies);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
+       
     }
 
     [ContextMenu("Spawn Enemy")]
@@ -54,7 +54,7 @@ public class EnemyManager : Singleton<EnemyManager>
             int spawnIndex = Random.Range(0, spawnPoints.Length);
             GameObject newSpawn = Instantiate(enemyTypes[index], spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation);
             enemies.Add(newSpawn);
-            Debug.Log(enemies.Count);
+            //Debug.Log(enemies.Count);
         }
 
         Debug.Log("Total: " + enemies.Count + " enemies");

@@ -1397,7 +1397,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 1
-  enemyHealth: 0
+  enemyHealth: 150
+  enemyHitScore: 10
+  enemyDeathScore: 100
 --- !u!1 &156920
 GameObject:
   m_ObjectHideFlags: 0

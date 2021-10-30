@@ -20,7 +20,12 @@ public class GameManager : Singleton<GameManager>
     public Difficulty difficulty;
 
     float scoreMultiplier = 1f;
-    float score = 3;
+    public float score;
+
+    public void AddScore(float _points)
+    {
+        score += _points * scoreMultiplier;
+    }
 
     private void OnEnable()
     {
@@ -45,7 +50,7 @@ public class GameManager : Singleton<GameManager>
         difficulty = Difficulty.Easy;
 
         SetUp();
-        Debug.Log(score);
+        Debug.Log("Score: " + score);
     }
 
     // Update is called once per frame
@@ -73,8 +78,4 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void AddScore(float _points)
-    {
-        score += _points * scoreMultiplier;
-    }
 }
