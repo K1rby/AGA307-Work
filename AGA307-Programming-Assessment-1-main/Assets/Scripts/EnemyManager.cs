@@ -36,7 +36,6 @@ public class EnemyManager : Singleton<EnemyManager>
         }*/
         SpawnEnemy();
         StartCoroutine(DelayedSpawn(enemies.Count));
-        //ShuffleList(enemies);
 
     }
 

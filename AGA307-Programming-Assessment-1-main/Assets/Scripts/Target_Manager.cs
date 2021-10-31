@@ -10,6 +10,13 @@ public class Target_Manager : Singleton<Target_Manager>
     public GameObject[] targetTypes;
     public List<GameObject> targets;
 
+    public void TargetDestroyed(Target toRemove)
+    {
+        targets.Remove(toRemove.gameObject);
+        //Destroy(toRemove.gameObject);
+        Debug.Log("Total: " + targets.Count + " targets");
+    }
+
     // Start is called before the first frame update
     void Start()
     {

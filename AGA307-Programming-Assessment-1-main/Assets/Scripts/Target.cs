@@ -38,6 +38,7 @@ public class Target : MonoBehaviour
     {
         meshRenderer.material.color = Color.red;
         Destroy(gameObject, 0.2f);
+        Target_Manager.instance.TargetDestroyed(this);
     }
 
     IEnumerator TargetMove()
