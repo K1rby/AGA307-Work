@@ -509,7 +509,7 @@ Animator:
   m_GameObject: {fileID: 133616}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 20300ac630e0fcd4dbab63a9b39cdafa, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d53671b70c2341143ba4853733fa40d3, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -530,9 +530,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623d360330aa56e4dae26772d175cf28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 9595696}
   enemyType: 2
   enemyHealth: 50
-  enemyHitScore: 10
+  enemyHitScore: 1
   enemyDeathScore: 100
 --- !u!1 &134496
 GameObject:

@@ -2067,7 +2067,7 @@ Animator:
   m_GameObject: {fileID: 185486}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 20300ac630e0fcd4dbab63a9b39cdafa, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d53671b70c2341143ba4853733fa40d3, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -2088,9 +2088,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234472e1a2d2dce46bf3f980f2d1e2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 9550666}
   enemyType: 0
   enemyHealth: 100
-  enemyHitScore: 10
+  enemyHitScore: 1
   enemyDeathScore: 100
   scavangerRange: 1000
 --- !u!1 &185512

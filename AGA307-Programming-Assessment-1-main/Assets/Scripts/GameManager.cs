@@ -22,9 +22,13 @@ public class GameManager : Singleton<GameManager>
     float scoreMultiplier = 1f;
     public float score;
 
+    /*public float maxTime = 30f;
+    float timer = 30f;*/
+
     public void AddScore(float _points)
     {
         score += _points * scoreMultiplier;
+        UIManager.instance.UpdateScore(score);
     }
 
     private void OnEnable()
@@ -56,7 +60,12 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        
+        /*if(gameState == GameState.Start)
+        {
+            timer -= Time.deltaTime;
+            timer = Mathf.Clamp(timer, 0, maxTime);
+            UIManager.instance.UpdateTimer(timer);
+        }*/
     }
 
     void SetUp()

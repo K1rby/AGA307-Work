@@ -14,6 +14,8 @@ public enum EnemyType
 
 public class Enemies : MonoBehaviour
 {
+    public Animator animator;
+
     private GameManager _GM;
 
     float moveDistance = 500f;
@@ -21,7 +23,7 @@ public class Enemies : MonoBehaviour
     public EnemyType enemyType;
     public int enemyHealth;
 
-    public float enemyHitScore = 10f; //Score received when enemy is hit
+    public float enemyHitScore = 1f; //Score received when enemy is hit
     public float enemyDeathScore = 100f; //Score received when enemy dies
 
     int playerDamage = 10;
@@ -30,6 +32,7 @@ public class Enemies : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         StartCoroutine(Move());
         SetUp();
         _GM = GameManager.instance;
@@ -86,6 +89,7 @@ public class Enemies : MonoBehaviour
 
     public virtual void Hit()
     {
+        animator.SetTrigger("Hit");
         enemyHealth -= playerDamage;
         GameEvents.ReportEnemyHit(this);
         _GM.AddScore(enemyHitScore);
@@ -103,6 +107,7 @@ public class Enemies : MonoBehaviour
 
     public virtual void Die()
     {
+        animator.SetTrigger("Die");
         GameEvents.ReportEnemyDied(this);
         _GM.AddScore(enemyDeathScore);
         EnemyManager.instance.EnemyDied(this);
