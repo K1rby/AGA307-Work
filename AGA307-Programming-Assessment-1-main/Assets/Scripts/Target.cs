@@ -27,7 +27,7 @@ public class Target : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        StartCoroutine(TargetMove());
+        //StartCoroutine(TargetMove());
         SetUp();
     }
 
@@ -45,7 +45,7 @@ public class Target : MonoBehaviour
         Target_Manager.instance.TargetDestroyed(this);
     }
 
-    IEnumerator TargetMove()
+    /*IEnumerator TargetMove()
     {
         for (int i = 0; i < targetMoveDistance; i++)
         {
@@ -57,7 +57,7 @@ public class Target : MonoBehaviour
         transform.Rotate(Vector3.up * 180f);
         yield return new WaitForSecondsRealtime(0.3f);
         StartCoroutine(TargetMove());
-    }
+    }*/
 
     void SetUp()
     {

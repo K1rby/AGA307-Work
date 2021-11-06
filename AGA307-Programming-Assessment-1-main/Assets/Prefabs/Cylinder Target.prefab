@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3765866353474138825}
   - component: {fileID: 3765866353474138824}
   - component: {fileID: 3765866353474138823}
+  - component: {fileID: 4118042448085535829}
   m_Layer: 7
   m_Name: Cylinder Target
   m_TagString: Target
@@ -109,6 +110,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61425acade6584e43bea94bb094199f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 4118042448085535829}
   meshRenderer: {fileID: 3765866353474138825}
   targetSize: 2
-  targetHealth: 0
+--- !u!95 &4118042448085535829
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765866353474138822}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c93e54cb0d6904a46b7573982d862fe5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
