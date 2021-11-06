@@ -53,7 +53,6 @@ public class EnemyManager : Singleton<EnemyManager>
             int spawnIndex = Random.Range(0, spawnPoints.Length);
             GameObject newSpawn = Instantiate(enemyTypes[index], spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation);
             enemies.Add(newSpawn);
-            //Debug.Log(enemies.Count);
         }
 
         Debug.Log("Total: " + enemies.Count + " enemies");

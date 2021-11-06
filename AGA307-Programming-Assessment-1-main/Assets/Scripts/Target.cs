@@ -13,17 +13,20 @@ public enum TargetSize
 
 public class Target : MonoBehaviour
 {
+    public Animator anim;
+
     public MeshRenderer meshRenderer;
 
     public TargetSize targetSize;
     float scaleFactor = 1;
 
-    float targetMoveDistance = 150f;
+    float targetMoveDistance = 50f;
     float targetMoveSpeed = 10f;
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         StartCoroutine(TargetMove());
         SetUp();
     }
@@ -36,8 +39,9 @@ public class Target : MonoBehaviour
 
     public void OnHit()
     {
+        anim.SetTrigger("Hit");
         meshRenderer.material.color = Color.red;
-        Destroy(gameObject, 0.2f);
+        Destroy(gameObject, 1f);
         Target_Manager.instance.TargetDestroyed(this);
     }
 
@@ -63,13 +67,13 @@ public class Target : MonoBehaviour
                 scaleFactor = 1;
                 transform.localScale = Vector3.one * scaleFactor;
                 targetMoveSpeed = 20f;
-                targetMoveDistance = 200f;
+                targetMoveDistance = 50f;
                 break;
             case TargetSize.Medium:
                 scaleFactor = 2;
                 transform.localScale = Vector3.one * scaleFactor;
                 targetMoveSpeed = 15f;
-                targetMoveDistance = 175f;
+                targetMoveDistance = 100f;
                 break;
             case TargetSize.Large:
                 scaleFactor = 3;

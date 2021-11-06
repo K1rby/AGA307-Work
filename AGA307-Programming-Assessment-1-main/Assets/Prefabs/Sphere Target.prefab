@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6157982820028647980}
   - component: {fileID: 6157982820028647971}
   - component: {fileID: 6157982820028647970}
+  - component: {fileID: 704388038227246754}
   m_Layer: 7
   m_Name: Sphere Target
   m_TagString: Target
@@ -108,6 +109,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61425acade6584e43bea94bb094199f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 704388038227246754}
   meshRenderer: {fileID: 6157982820028647980}
   targetSize: 1
-  targetHealth: 0
+--- !u!95 &704388038227246754
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6157982820028647969}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 90b8467ea51ba104bb06e06d7d8c4a34, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

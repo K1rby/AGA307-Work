@@ -2218,7 +2218,7 @@ MonoBehaviour:
   enemyType: 0
   enemyHealth: 100
   enemyHitScore: 1
-  enemyDeathScore: 100
+  enemyDeathScore: 50
   scavangerRange: 1000
 --- !u!1 &189416
 GameObject:

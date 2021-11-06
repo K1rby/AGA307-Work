@@ -112,7 +112,7 @@ public class Enemies : MonoBehaviour
         _GM.AddScore(enemyDeathScore);
         EnemyManager.instance.EnemyDied(this);
         StopAllCoroutines();
-        Destroy(gameObject);
+        Destroy(gameObject, 3f);
     }
 }
 
